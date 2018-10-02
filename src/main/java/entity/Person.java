@@ -6,12 +6,17 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,6 +27,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "person")
+
 @NamedQueries({
     @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")
     , @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :id")
@@ -44,14 +50,30 @@ public class Person implements Serializable {
     @Size(max = 45)
     @Column(name = "lastName")
     private String lastName;
+    
+    
+    //Address
     @Size(max = 45)
     @Column(name = "Address")
-    private String address;
+    @OneToMany(mappedBy = "personAddress")
+    private List <Address> address = new ArrayList();
+    //Address
     @Size(max = 45)
     @Column(name = "City")
     private String city;
+    
+    //phone
     @Column(name = "Phone")
-    private Integer phone;
+    @ManyToOne
+     private Phone phone;       
+   // Hobbys
+    @ManyToMany
+    List<Hobby> hobbys = new ArrayList();
+    
+    
+   
+   
+    
 
     public Person() {
     }
@@ -84,13 +106,7 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  
 
     public String getCity() {
         return city;
@@ -100,13 +116,7 @@ public class Person implements Serializable {
         this.city = city;
     }
 
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
+  
 
     @Override
     public int hashCode() {

@@ -8,7 +8,7 @@
     <class>entity.Hobby</class>
     <class>entity.Address</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-  <properties>
+    <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/krak"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

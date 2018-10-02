@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -37,6 +38,8 @@ public class Cityinfo implements Serializable {
     @Size(max = 45)
     @Column(name = "city")
     private String city;
+    @ManyToOne
+    private Address addressCity;
 
     public Cityinfo() {
     }
