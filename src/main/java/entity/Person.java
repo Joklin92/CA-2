@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -54,7 +55,7 @@ public class Person implements Serializable {
     
     //Address
     @Size(max = 45)
-    @Column(name = "Address")
+    @JoinColumn(name = "Address")
     @OneToMany(mappedBy = "personAddress")
     private List <Address> address = new ArrayList();
     //Address
@@ -63,7 +64,7 @@ public class Person implements Serializable {
     private String city;
     
     //phone
-    @Column(name = "Phone")
+    @JoinColumn(name = "Phone")
     @ManyToOne
      private Phone phone;       
    // Hobbys
