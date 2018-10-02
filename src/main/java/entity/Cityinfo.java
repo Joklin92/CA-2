@@ -33,13 +33,21 @@ public class Cityinfo implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "zipCode")
+    @Column(name = "ZIP")
     private Integer zipCode;
     @Size(max = 45)
-    @Column(name = "city")
+    @Column(name = "CITY")
     private String city;
     @ManyToOne
     private Address addressCity;
+
+    public Address getAddressCity() {
+        return addressCity;
+    }
+
+    public void setAddressCity(Address addressCity) {
+        this.addressCity = addressCity;
+    }
 
     public Cityinfo() {
     }
