@@ -49,6 +49,22 @@ public class Address implements Serializable {
     @OneToMany(mappedBy = "addressCity")
     private List<Cityinfo> cityinfo = new ArrayList();
 
+    public Person getPersonAddress() {
+        return personAddress;
+    }
+
+    public void setPersonAddress(Person personAddress) {
+        this.personAddress = personAddress;
+    }
+
+    public List<Cityinfo> getCityinfo() {
+        return cityinfo;
+    }
+
+    public void setCityinfo(List<Cityinfo> cityinfo) {
+        this.cityinfo = cityinfo;
+    }
+
     public Address() {
     }
 

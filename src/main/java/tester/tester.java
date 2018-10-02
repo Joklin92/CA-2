@@ -10,6 +10,8 @@ public class tester {
 
         puproperties.put("javax.persistence.sql-load-script-source", "scripts/ClearDB.sql");
         Persistence.generateSchema("persistence", puproperties);
+        puproperties.put("javax.persistence.sql-load-script-source", "scripts/CityScript.sql");
+        Persistence.generateSchema("persistence", puproperties);
         puproperties.remove("javax.persistence.sql-load-script-source");
         Persistence.generateSchema("persistence", puproperties);
 
