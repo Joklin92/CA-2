@@ -1,2 +1,2 @@
-drop database jpa2;
-create database jpa2;
+drop database krak;
+create database krak;
