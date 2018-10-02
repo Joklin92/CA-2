@@ -1,20 +1,29 @@
 package facade;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-public class Facade implements IFacade{
+public class Facade implements IFacade {
+
+    
+    EntityManagerFactory emf;
+         private static final String PERSISTENCE_UNIT_NAME = "persistence";
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
     @Override
     public void addEntityManagerFactory(EntityManagerFactory factory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.emf = factory;
     }
 
     @Override
     public EntityManager getEntityManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return emf.createEntityManager(); 
+      
     }
 
     @Override
@@ -56,5 +65,5 @@ public class Facade implements IFacade{
     public Integer getPeopleCountByHobby(String hobby) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
