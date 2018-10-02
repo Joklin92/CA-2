@@ -10,7 +10,7 @@ public class RandomTestDataGenerator {
     
     Facade pf = new Facade();
     
-    public String generator(int samples, Long ids) {
+    public String generator(int samples) {
         
         List<Person> result = new ArrayList();
         String[] firstNames = { "Benjamin" , "Merle" , "Nikolaj" , "Marie" , "Ellen" , "Arthur" , "Karla" , "Matias" , "Marius" , "Marcus" , "Sofia" , "Villads" , "Marcus" , "Simon" , "William" , "Maja" , "Jonathan" , "Mads" , "Ida" , "Jonathan" , "Magnus" , "Jakob" , "Lucas" , "Nicoline" , "Julie" , "August" , "Nicoline" , "Laura" , "Thea" , "Mille" };
@@ -18,7 +18,6 @@ public class RandomTestDataGenerator {
         String[] address = {"Lærkevej" , "Birkevej" , "Vibevej" , "Vinkelvej" , "Østergade" , "Engvej" , "Vestergade" , "Møllevej" , "Kirkevej" , "Bøgevej" , "Industrivej" , "Tværvej" , "Stationsvej" , "Elmevej" , "Skovvej" , "Nørregade" , "Bakkevej" , "Søndergade" , "Skolevej" , "Drosselvej" , "Fasanvej"};
         Random rndAddressNumber = new Random();
         Random rndPhoneNumber = new Random();
-        Long id = ids;
         
         for (int i = 0; i < samples; i++) {
         Person p = new Person();
