@@ -95,7 +95,7 @@ DROP TABLE IF EXISTS `person`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `person` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(45) DEFAULT NULL,
   `lastName` varchar(45) DEFAULT NULL,
   `Address` varchar(45) DEFAULT NULL,
@@ -122,7 +122,7 @@ DROP TABLE IF EXISTS `person_hobby`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `person_hobby` (
-  `hobbys_id` int(11) NOT NULL,
+  `hobbys_id` int(11) NOT NULL AUTO_INCREMENT,
   `hobbys_name` varchar(255) NOT NULL,
   PRIMARY KEY (`hobbys_id`,`hobbys_name`),
   KEY `FK_person_hobby_hobbys_name` (`hobbys_name`),
