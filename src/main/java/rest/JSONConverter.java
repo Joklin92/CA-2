@@ -60,7 +60,7 @@ public class JSONConverter {
     }
 
     //------------------------- Person --------------------//   
-    public static Person getPersonFromJson(String js) {
+    public   static Person getPersonFromJson(String js) {
         return gson.fromJson(js, Person.class);
 
     }
@@ -69,7 +69,7 @@ public class JSONConverter {
         return gson.toJson(p);
     }
 
-    public static String getJSONFromPersons(List<Person> persons) {
+    public  static String getJSONFromPersons(List<Person> persons) {
 
         return gson.toJson(persons);
     }
@@ -78,6 +78,6 @@ public class JSONConverter {
 
         List<Person> al = new ArrayList();
 
-        System.out.println(getJSONFromPersons(al));
+      
     }
 }

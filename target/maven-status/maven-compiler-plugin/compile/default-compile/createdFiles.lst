@@ -17,4 +17,3 @@ tester\tester.class
 rest\ApplicationConfig.class
 generator\RandomTestDataGenerator.class
 rest\HobbyResource.class
-rest\PhoneResource.class
