@@ -1,5 +1,6 @@
 package mappers;
 
+import entity.Address;
 import entity.Hobby;
 import entity.Person;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 public class PersonMapper 
 {
     public String fullName;
-    private String address;
+    private Address address;
     private int phone;
 
     private String[] hobbies;
