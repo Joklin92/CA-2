@@ -1,6 +1,7 @@
 entity\Cityinfo_.class
 facade\IFacade.class
 entity\Address.class
+mappers\AddressMapper.class
 entity\Person.class
 rest\JSONConverter.class
 entity\Person_.class
@@ -9,6 +10,7 @@ entity\Hobby_.class
 facade\Facade.class
 mappers\PersonMapper.class
 rest\PersonResource.class
+mappers\CityinfoMapper.class
 rest\AddressResource.class
 entity\Address_.class
 entity\Cityinfo.class

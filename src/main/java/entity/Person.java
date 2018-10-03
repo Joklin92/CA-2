@@ -69,6 +69,11 @@ public class Person implements Serializable {
         this.lastName = lastName;
         this.phone = phone;
     }
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
     
     
 

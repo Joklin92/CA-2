@@ -59,17 +59,32 @@ public class JSONConverter {
         return gson.toJson(hobbys);
     }
 
-    //------------------------- Person --------------------//   
-    public   static PersonMapper getPersonFromJson(String js) {
+    //------------------------- PersonMapper --------------------//   
+    public   static PersonMapper getPersonMapperFromJson(String js) {
         return gson.fromJson(js, PersonMapper.class);
 
     }
 
-    public static String getJSONFromPerson(PersonMapper p) {
+    public static String getJSONFromPersonMapper(PersonMapper p) {
         return gson.toJson(p);
     }
 
-    public  static String getJSONFromPersons(List<PersonMapper> persons) {
+    public  static String getJSONFromPersonMapper(List<PersonMapper> persons) {
+
+        return gson.toJson(persons);
+    }
+    
+      //------------------------- Person--------------------//   
+    public static Person getPersonFromJson(String js) {
+        return gson.fromJson(js, Person.class);
+
+    }
+
+    public static String getJSONFromPerson(Person p) {
+        return gson.toJson(p);
+    }
+
+    public  static String getJSONFromPersons(List<Person> persons) {
 
         return gson.toJson(persons);
     }

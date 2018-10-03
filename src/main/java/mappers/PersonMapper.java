@@ -17,25 +17,24 @@ public class PersonMapper {
 
     private String[] hobbies;
 
-    public PersonMapper(String firstName, String lastName, int phone) {
-        this.fullName = firstName + " " + lastName;
-        this.phone = phone;
+    public PersonMapper() {
     }
 
-
-
+   
     public PersonMapper(String firstName, String lastName) {
         this.fullName = firstName + " " + lastName;
     }
     
-    
-    
+    public PersonMapper(String firstName, String lastName, int phonenumber) {
+        this.fullName = firstName + " " + lastName;
+        this.phone = phonenumber;
+    }
 
 
     public PersonMapper(Person person) {
         this.fullName = person.getFirstName() + " " + person.getLastName();
         this.address = person.getAddress();
-        this.phone = person.getPhone();
+        this.phonenumber = person.getPhone();
 
         List<Hobby> hobby = person.getHobbys();
         this.hobbies = new String[hobby.size()];

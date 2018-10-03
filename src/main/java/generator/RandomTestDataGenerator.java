@@ -26,7 +26,7 @@ public class RandomTestDataGenerator {
             p.setLastName(lastNames[rnd.nextInt(lastNames.length)]);
             p.setPhone(rnd.nextInt(88888888) + 11111111);
 //<<<<<<< HEAD
-            //p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(500)));
+            p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(500)));
             //em.persist(p);
 //=======
             
