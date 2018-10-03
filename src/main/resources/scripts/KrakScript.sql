@@ -95,10 +95,9 @@ DROP TABLE IF EXISTS `Person`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Person` (
   `id` int(11) NOT NULL,
-  `firstName` varchar(45) DEFAULT NULL,
-  `lastName` varchar(45) DEFAULT NULL,
+  `FirstName` varchar(45) DEFAULT NULL,
+  `LastName` varchar(45) DEFAULT NULL,
   `Address` varchar(45) DEFAULT NULL,
-  `City` varchar(45) DEFAULT NULL,
   `Phone` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='		';
@@ -111,29 +110,6 @@ CREATE TABLE `Person` (
 LOCK TABLES `Person` WRITE;
 /*!40000 ALTER TABLE `Person` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Person` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Phone`
---
-
-DROP TABLE IF EXISTS `Phone`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Phone` (
-  `number` int(11) NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`number`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Phone`
---
-
-LOCK TABLES `Phone` WRITE;
-/*!40000 ALTER TABLE `Phone` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Phone` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

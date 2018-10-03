@@ -17,7 +17,6 @@ public class tester {
         Persistence.generateSchema("persistence", puproperties);
         puproperties.remove("javax.persistence.sql-load-script-source");
         Persistence.generateSchema("persistence", puproperties);
-
     }
 }
 
