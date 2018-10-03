@@ -2,11 +2,7 @@
 
 ### macOS ###
 # General
-<<<<<<< HEAD
 .DSStore
-=======
-.DS_Store
->>>>>>> 71bc46d67eadc1b3c7ae1d0d6068e756fea12f86
 .AppleDouble
 .LSOverride
 
@@ -14,11 +10,7 @@
 Icon
 
 # Thumbnails
-<<<<<<< HEAD
 .*
-=======
-._*
->>>>>>> 71bc46d67eadc1b3c7ae1d0d6068e756fea12f86
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
@@ -70,17 +62,8 @@ $RECYCLE.BIN/
 *.lnk
 
 
-<<<<<<< HEAD
 #Other Sources
 
-**/persistence.xml
+CA-2\src\main\resources\META-INF\persistence.xml
 
 # End of https://www.gitignore.io/api/macos,windows,netbeans
-=======
-#META-INF
-
-**/persistence.xml
-
-# End of https://www.gitignore.io/api/macos,windows,netbeans
-/target/
->>>>>>> 71bc46d67eadc1b3c7ae1d0d6068e756fea12f86

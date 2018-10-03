@@ -6,21 +6,17 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Jollys
- */
 @Entity
 @Table(name = "person")
 
@@ -38,6 +34,7 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Size(max = 45)
     @Column(name = "firstName")
@@ -49,8 +46,9 @@ public class Person implements Serializable {
     //Address
     @Size(max = 45)
     @Column(name = "Address")
+    @ManyToOne
     private String address;
-
+    
     @Column(name = "Phone")
      private int phone;       
    // Hobbys
@@ -110,17 +108,7 @@ public class Person implements Serializable {
 
     public void setHobbys(List<Hobby> hobbys) {
         this.hobbys = hobbys;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-  
-    
+    }    
     
     @Override
     public int hashCode() {

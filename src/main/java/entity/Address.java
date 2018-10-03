@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,10 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Jollys
- */
 @Entity
 @Table(name = "address")
 @NamedQueries({
@@ -42,13 +34,12 @@ public class Address implements Serializable {
     @Size(max = 45)
     @Column(name = "AdditionalInfo")
     private String additionalInfo;
-    
-    @ManyToOne
-    private Person personAddress;
-  
-    @OneToMany(mappedBy = "addressCity")
-    private List<Cityinfo> cityinfo = new ArrayList();
 
+    private Cityinfo cityInfo;
+
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "address")
+    private Person personAddress;
+ 
     public Person getPersonAddress() {
         return personAddress;
     }
@@ -56,14 +47,7 @@ public class Address implements Serializable {
     public void setPersonAddress(Person personAddress) {
         this.personAddress = personAddress;
     }
-
-    public List<Cityinfo> getCityinfo() {
-        return cityinfo;
-    }
-
-    public void setCityinfo(List<Cityinfo> cityinfo) {
-        this.cityinfo = cityinfo;
-    }
+    
 
     public Address() {
     }

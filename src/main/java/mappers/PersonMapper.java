@@ -4,10 +4,6 @@ import entity.Hobby;
 import entity.Person;
 import java.util.List;
 
-/**
- *
- * @author malik
- */
 public class PersonMapper 
 {
     public String fullName;

@@ -10,8 +10,10 @@ public class tester {
         
         Facade facade = new Facade();
         facade.addEntityManagerFactory(Persistence.createEntityManagerFactory("persistence"));
-        RandomTestDataGenerator rtdg = new RandomTestDataGenerator();
-        rtdg.generator(10000);
+        //RandomTestDataGenerator rtdg = new RandomTestDataGenerator();
+      //  rtdg.generator(10);
+      
+        System.out.println("derp" + facade.getPersonByPhone(88689226));
 
     }
     

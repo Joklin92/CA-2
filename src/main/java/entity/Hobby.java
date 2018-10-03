@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class Hobby implements Serializable {
     @Column(name = "description")
     private String description;
     
-    @ManyToMany(mappedBy = "hobbys")
+    @ManyToMany(mappedBy = "hobbys", cascade = CascadeType.ALL) 
     private List<Person> hobbys = new ArrayList();
 
     public Hobby() {

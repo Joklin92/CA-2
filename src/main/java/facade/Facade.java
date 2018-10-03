@@ -52,15 +52,17 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public Person getPersonByPhone(int phoneNumber) 
+    public Person getPersonByPhone(int phone) 
     {
         EntityManager manager = getEntityManager();
         Person p = null;
-        
+        System.out.println("first");
         try
         {
+            System.out.println("second");
             manager.getTransaction().begin();
-            p = manager.find(Person.class, phoneNumber);
+            p = manager.find(Person.class, phone);
+            System.out.println("third" + p);
             manager.getTransaction().commit();
             return p;
         }
