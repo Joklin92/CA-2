@@ -35,7 +35,6 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "Person.findByFirstName", query = "SELECT p FROM Person p WHERE p.firstName = :firstName")
     , @NamedQuery(name = "Person.findByLastName", query = "SELECT p FROM Person p WHERE p.lastName = :lastName")
     , @NamedQuery(name = "Person.findByAddress", query = "SELECT p FROM Person p WHERE p.address = :address")
-    , @NamedQuery(name = "Person.findByCity", query = "SELECT p FROM Person p WHERE p.city = :city")
     , @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phone = :phone")})
 public class Person implements Serializable {
 
@@ -67,12 +66,7 @@ public class Person implements Serializable {
      private int phone;       
    // Hobbys
     @ManyToMany
-    List<Hobby> hobbys = new ArrayList();
-    
-    
-   
-   
-    
+    List<Hobby> hobbys = new ArrayList();   
 
     public Person() {
     }
