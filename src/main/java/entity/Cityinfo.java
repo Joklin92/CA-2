@@ -7,6 +7,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,12 +30,13 @@ public class Cityinfo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ZIP")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private Integer zipCode;
     @Size(max = 45)
     @Column(name = "CITY")
     private String city;
     
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "cityinfo")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "city")
     private List<Address> addressCity = new ArrayList();
 
     public Cityinfo() {

@@ -17,6 +17,11 @@ public class PersonMapper
         this.fullName = firstName + " " + lastName;        
         this.phone = phone;
     }
+
+    public PersonMapper(String firstName, String lastName) {
+        this.fullName = firstName + " " + lastName;
+    }
+    
     
     
 
