@@ -60,13 +60,11 @@ public class Person implements Serializable {
     private List <Address> address = new ArrayList();
     //Address
     @Size(max = 45)
-    @Column(name = "City")
-    private String city;
-    
-    //phone
-    @JoinColumn(name = "Phone")
-    @ManyToOne
-     private Phone phone;       
+    @Column(name = "Address")
+    private String address;
+
+    @Column(name = "Phone")
+     private int phone;       
    // Hobbys
     @ManyToMany
     List<Hobby> hobbys = new ArrayList();
@@ -115,11 +113,11 @@ public class Person implements Serializable {
         this.address = address;
     }
 
-    public Phone getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(Phone phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
@@ -130,18 +128,6 @@ public class Person implements Serializable {
     public void setHobbys(List<Hobby> hobbys) {
         this.hobbys = hobbys;
     }
-
-    
-  
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
   
 
     @Override
