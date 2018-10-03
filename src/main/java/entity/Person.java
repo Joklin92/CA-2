@@ -35,7 +35,6 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "Person.findByFirstName", query = "SELECT p FROM Person p WHERE p.firstName = :firstName")
     , @NamedQuery(name = "Person.findByLastName", query = "SELECT p FROM Person p WHERE p.lastName = :lastName")
     , @NamedQuery(name = "Person.findByAddress", query = "SELECT p FROM Person p WHERE p.address = :address")
-    , @NamedQuery(name = "Person.findByCity", query = "SELECT p FROM Person p WHERE p.city = :city")
     , @NamedQuery(name = "Person.findByPhone", query = "SELECT p FROM Person p WHERE p.phone = :phone")})
 public class Person implements Serializable {
 
@@ -51,13 +50,7 @@ public class Person implements Serializable {
     @Size(max = 45)
     @Column(name = "lastName")
     private String lastName;
-    
-    
-//    //Address
-//    @Size(max = 45)
-//    @JoinColumn(name = "Address")
-//    @OneToMany(mappedBy = "personAddress")
-//    private List <Address> address = new ArrayList();
+
     //Address
     @Size(max = 45)
     @Column(name = "Address")
@@ -67,12 +60,7 @@ public class Person implements Serializable {
      private int phone;       
    // Hobbys
     @ManyToMany
-    List<Hobby> hobbys = new ArrayList();
-    
-    
-   
-   
-    
+    List<Hobby> hobbys = new ArrayList();   
 
     public Person() {
     }
@@ -120,8 +108,17 @@ public class Person implements Serializable {
     public void setHobbys(List<Hobby> hobbys) {
         this.hobbys = hobbys;
     }
-  
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+  
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
