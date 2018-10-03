@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,10 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Jollys
- */
 @Entity
 @Table(name = "address")
 @NamedQueries({
@@ -43,27 +35,13 @@ public class Address implements Serializable {
     @Column(name = "AdditionalInfo")
     private String additionalInfo;
     
-    @ManyToOne
-    private Person personAddress;
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "address")
+    private List<Person> personAddress = new ArrayList();
   
-    @OneToMany(mappedBy = "addressCity")
-    private List<Cityinfo> cityinfo = new ArrayList();
+    @ManyToOne
+    private Cityinfo cityinfo;
 
-    public Person getPersonAddress() {
-        return personAddress;
-    }
 
-    public void setPersonAddress(Person personAddress) {
-        this.personAddress = personAddress;
-    }
-
-    public List<Cityinfo> getCityinfo() {
-        return cityinfo;
-    }
-
-    public void setCityinfo(List<Cityinfo> cityinfo) {
-        this.cityinfo = cityinfo;
-    }
 
     public Address() {
     }
@@ -71,6 +49,16 @@ public class Address implements Serializable {
     public Address(String street) {
         this.street = street;
     }
+
+    public Cityinfo getCityinfo() {
+        return cityinfo;
+    }
+
+    public void setCityinfo(Cityinfo cityinfo) {
+        this.cityinfo = cityinfo;
+    }
+    
+    
 
     public String getStreet() {
         return street;

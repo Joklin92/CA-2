@@ -70,7 +70,11 @@ public class Facade implements IFacade {
         List<Person> byHobby = new ArrayList<>();
         System.out.println("Name of hobby: " + hobby);
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p LEFT JOIN p.hobbys h WHERE h.name = :hobby");
+<<<<<<< HEAD
         query.setParameter("hobby", hobby);
+=======
+        query.setParameter("name", hobby);
+>>>>>>> 2e7b4dd0b04c0a3310c25cd50a3094472a2a794e
         byHobby = query.getResultList();
         return byHobby;
     }
@@ -102,11 +106,21 @@ public class Facade implements IFacade {
         EntityManager manager = factory.createEntityManager();
 
         List<Cityinfo> cityinfo = null;
+<<<<<<< HEAD
         
         try
         {
             manager.getTransaction().begin();
             cityinfo = manager.createQuery("Select c from City c").getResultList();
+=======
+        System.out.println("first");
+        try
+        {
+            System.out.println("second");
+            manager.getTransaction().begin();
+            cityinfo = manager.createQuery("Select c.zipCode from Cityinfo c").getResultList();
+            System.out.println("third");
+>>>>>>> 2e7b4dd0b04c0a3310c25cd50a3094472a2a794e
             manager.getTransaction().commit();
             return cityinfo;
         }
