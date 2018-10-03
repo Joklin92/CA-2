@@ -1,3 +1,4 @@
+drop database krak;
 CREATE DATABASE  IF NOT EXISTS `krak`;
 USE `krak`;
 
@@ -6,6 +7,7 @@ DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `Street` varchar(45) NOT NULL,
   `AdditionalInfo` varchar(45) DEFAULT NULL,
+  `City` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Street`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -37,7 +39,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(45) DEFAULT NULL,
   `LastName` varchar(45) DEFAULT NULL,
   `Address` varchar(45) DEFAULT NULL,
@@ -50,7 +52,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `person_hobby`;
 CREATE TABLE `person_hobby` (
-  `hobbys_id` int(11) NOT NULL,
+  `hobbys_id` int(11) NOT NULL AUTO_INCREMENT,
   `hobbys_name` varchar(255) NOT NULL,
   PRIMARY KEY (`hobbys_id`,`hobbys_name`),
   KEY `FK_person_hobby_hobbys_name` (`hobbys_name`),

@@ -50,13 +50,7 @@ public class Person implements Serializable {
     @Size(max = 45)
     @Column(name = "lastName")
     private String lastName;
-    
-    
-//    //Address
-//    @Size(max = 45)
-//    @JoinColumn(name = "Address")
-//    @OneToMany(mappedBy = "personAddress")
-//    private List <Address> address = new ArrayList();
+
     //Address
     @Size(max = 45)
     @Column(name = "Address")
@@ -114,8 +108,17 @@ public class Person implements Serializable {
     public void setHobbys(List<Hobby> hobbys) {
         this.hobbys = hobbys;
     }
-  
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+  
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
