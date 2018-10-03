@@ -53,11 +53,11 @@ public class Person implements Serializable {
     private String lastName;
     
     
-    //Address
-    @Size(max = 45)
-    @JoinColumn(name = "Address")
-    @OneToMany(mappedBy = "personAddress")
-    private List <Address> address = new ArrayList();
+//    //Address
+//    @Size(max = 45)
+//    @JoinColumn(name = "Address")
+//    @OneToMany(mappedBy = "personAddress")
+//    private List <Address> address = new ArrayList();
     //Address
     @Size(max = 45)
     @Column(name = "Address")
@@ -103,14 +103,6 @@ public class Person implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public List<Address> getAddress() {
-        return address;
-    }
-
-    public void setAddress(List<Address> address) {
-        this.address = address;
     }
 
     public int getPhone() {
