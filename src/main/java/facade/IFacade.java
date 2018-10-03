@@ -1,5 +1,8 @@
 package facade;
 
+import entity.Address;
+import entity.Cityinfo;
+import entity.Hobby;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -7,14 +10,12 @@ import javax.persistence.EntityManagerFactory;
 
 public interface IFacade {
     
-    public void addEntityManagerFactory(EntityManagerFactory factory); //works        
-    public EntityManager getEntityManager(); //works
-    public void postPerson();
-    public Person putPerson();
-    public void deletePerson(int id);
+    public void addEntityManagerFactory(EntityManagerFactory factory);
+    public EntityManager getEntityManager();
+    public Person addPerson(Person person);
     public Person getPersonByPhone(int phoneNumber);
-    public List<Person> getPersonsByHobby(String hobby);
-    public List<Person> getPersonsByCity(String city);
-    public Integer getPeopleCountByHobby(String hobby);
-    public List<Integer> getZipCodes();
+    public List<Person> getPersonsByHobby(Hobby hobby);
+    public List<Person> getPersonsByCity(Address city);
+    public Long getPeopleCountByHobby(Hobby hobby);
+    public List<Cityinfo> getZipCodes();
 }

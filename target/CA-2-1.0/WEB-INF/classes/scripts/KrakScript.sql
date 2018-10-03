@@ -40,8 +40,13 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD:target/CA-2-1.0/WEB-INF/classes/scripts/KrakScript.sql
   `FirstName` varchar(45) DEFAULT NULL,
   `LastName` varchar(45) DEFAULT NULL,
+=======
+  `firstName` varchar(45) DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+>>>>>>> 71bc46d67eadc1b3c7ae1d0d6068e756fea12f86:KrakScript.sql
   `Address` varchar(45) DEFAULT NULL,
   `Phone` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
