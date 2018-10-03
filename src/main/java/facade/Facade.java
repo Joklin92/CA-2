@@ -22,7 +22,7 @@ public class Facade implements IFacade {
 
     public Facade() {
     }
-
+    
     @Override
     public void addEntityManagerFactory(EntityManagerFactory factory) {
         this.factory = factory;
@@ -83,15 +83,12 @@ public class Facade implements IFacade {
     }
 
   
-    public List<Person> getPersonsByCity(List<Address> addresses) {        
-        List<Person> byCity = new ArrayList<>();
-        System.out.println("first");
-        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p LEFT JOIN p.address h WHERE h.street = :street");
-        for (int i = 0; i < addresses.size(); i++) {
-        query.setParameter("street", addresses.get(i));
-        byCity.add((Person) query.getSingleResult());
-        }
-        System.out.println("done");
+    public List<PersonMapper> getPersonsByCity(int zipcode) {        
+        List<PersonMapper> byCity = new ArrayList<>();        
+
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p JOIN p.address a WHERE a.city.zipCode = :ZIP");
+        query.setParameter("ZIP", zipcode);
+        byCity = query.getResultList();
         return byCity;
     }
     
