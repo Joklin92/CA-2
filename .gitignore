@@ -62,9 +62,8 @@ $RECYCLE.BIN/
 *.lnk
 
 
-#META-INF
+#Other Sources
 
 **/persistence.xml
 
 # End of https://www.gitignore.io/api/macos,windows,netbeans
-/target/
