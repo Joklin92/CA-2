@@ -22,6 +22,16 @@ public class PersonMapper {
         this.phone = phone;
     }
 
+
+
+    public PersonMapper(String firstName, String lastName) {
+        this.fullName = firstName + " " + lastName;
+    }
+    
+    
+    
+
+
     public PersonMapper(Person person) {
         this.fullName = person.getFirstName() + " " + person.getLastName();
         this.address = person.getAddress();

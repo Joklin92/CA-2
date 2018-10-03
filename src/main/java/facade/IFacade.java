@@ -16,7 +16,7 @@ public interface IFacade {
     public Person addPerson(Person person);
     public PersonMapper getPersonByPhone(int phoneNumber);
     public List<Person> getPersonsByHobby(Hobby hobby);
-    public List<Person> getPersonsByCity(Address city);
+   // public List<Person> getPersonsByCity(Address city);
     public Long getPeopleCountByHobby(Hobby hobby);
     public List<Cityinfo> getZipCodes();
 }

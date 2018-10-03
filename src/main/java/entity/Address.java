@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -39,10 +40,9 @@ public class Address implements Serializable {
     private List<Person> personAddress = new ArrayList();
   
     @ManyToOne
-    private Cityinfo cityinfo;
-
-
-
+    @JoinColumn
+    private Cityinfo city;
+    
     public Address() {
     }
 
@@ -50,12 +50,31 @@ public class Address implements Serializable {
         this.street = street;
     }
 
+    public List<Person> getPersonAddress() {
+        return personAddress;
+    }
+
+    public void setPersonAddress(List<Person> personAddress) {
+        this.personAddress = personAddress;
+    }
+
+    
+    
+    public Address(String street, Cityinfo cityinfo) {
+        this.street = street;
+        this.city = cityinfo;
+    }
+
+    public Address(Cityinfo cityinfo) {
+        this.city = cityinfo;
+    }
+    
     public Cityinfo getCityinfo() {
-        return cityinfo;
+        return city;
     }
 
     public void setCityinfo(Cityinfo cityinfo) {
-        this.cityinfo = cityinfo;
+        this.city = cityinfo;
     }
     
     

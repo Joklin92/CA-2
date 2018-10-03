@@ -57,8 +57,8 @@ public class PersonResource {
     @GET
     @Path("complete") //with a sematic url parameter
     @Produces(MediaType.APPLICATION_JSON)
-    public String getallperson(@PathParam("phone") int phone) {
-        List<Person> p = pf.getAllPersons();
+    public String getallperson() {
+        List<PersonMapper> p = pf.getAllPersons();
         if (p == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }

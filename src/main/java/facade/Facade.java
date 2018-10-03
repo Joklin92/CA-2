@@ -9,12 +9,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import mappers.CityinfoMapper;
 import mappers.PersonMapper;
 
 public class Facade implements IFacade {
 
     private EntityManagerFactory factory;
-    
+
     public Facade(EntityManagerFactory factory) {
         this.factory = factory;
     }
@@ -22,42 +23,49 @@ public class Facade implements IFacade {
     public Facade() {
     }
 
-    
     @Override
-    public void addEntityManagerFactory(EntityManagerFactory factory) 
-    {
+    public void addEntityManagerFactory(EntityManagerFactory factory) {
         this.factory = factory;
     }
 
     @Override
-    public EntityManager getEntityManager() 
-    {
+    public EntityManager getEntityManager() {
         return factory.createEntityManager();
     }
 
     @Override
-    public Person addPerson(Person person) 
-    {
+    public Person addPerson(Person person) { //works
         EntityManager manager = getEntityManager();
-        try
-        {
+        try {
             manager.getTransaction().begin();
             manager.persist(person);
             manager.getTransaction().commit();
             return person;
+        } finally {
+            manager.close();
         }
-        finally
-        {
+    }
+
+    public List<PersonMapper> getAllPersons() { //works
+        EntityManager manager = factory.createEntityManager();
+
+        List<PersonMapper> pms = null;
+
+        try {
+            manager.getTransaction().begin();
+            pms = manager.createQuery("Select new mappers.PersonMapper(p.firstName, p.lastName) from Person p").getResultList();
+            manager.getTransaction().commit();
+            return pms;
+        } finally {
             manager.close();
         }
     }
 
     @Override
-    public PersonMapper getPersonByPhone(int phoneNumber) 
-    {
+    public PersonMapper getPersonByPhone(int phoneNumber) { //works
         EntityManager manager = getEntityManager();
         PersonMapper p = null;
-        
+
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName, p.phone) FROM Person AS p WHERE p.phone = :phone");
         query.setParameter("phone", phoneNumber);
         p = (PersonMapper) query.getSingleResult();
@@ -65,8 +73,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<Person> getPersonsByHobby(Hobby hobby) 
-    {
+    public List<Person> getPersonsByHobby(Hobby hobby) {
         List<Person> byHobby = new ArrayList<>();
         System.out.println("Name of hobby: " + hobby);
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p LEFT JOIN p.hobbys h WHERE h.name = :hobby");
@@ -75,43 +82,89 @@ public class Facade implements IFacade {
         return byHobby;
     }
 
-    @Override
-    public List<Person> getPersonsByCity(Address city) 
-    {
+  
+    public List<Person> getPersonsByCity(List<Address> addresses) {        
         List<Person> byCity = new ArrayList<>();
-        System.out.println("Name of city: " + city);
-        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p WHERE p.address = :city");
-        query.setParameter("CITY", city);
-        byCity = query.getResultList();
+        System.out.println("first");
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p LEFT JOIN p.address h WHERE h.street = :street");
+        for (int i = 0; i < addresses.size(); i++) {
+        query.setParameter("street", addresses.get(i));
+        byCity.add((Person) query.getSingleResult());
+        }
+        System.out.println("done");
         return byCity;
+    }
+    
+    public List<Address> getAddressByZip(int zipcode) {
+        List<Address> addresses = new ArrayList();  
+
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.AddressMapper(a.street) FROM Address AS a WHERE a.city.zipCode = :CITY_ZIP");
+        query.setParameter("CITY_ZIP", zipcode);
+        addresses = query.getResultList();
+
+        return addresses;
     }
 
     @Override
-    public Long getPeopleCountByHobby(Hobby hobby) 
-    {
+    public Long getPeopleCountByHobby(Hobby hobby) {
         Long total;
-        
+
         Query query = getEntityManager().createQuery("SELECT SUM(SIZE(h.hobbys)) FROM Hobby h where h.name = :name");
         total = (Long) query.getSingleResult();
         return total;
     }
 
     @Override
-    public List<Cityinfo> getZipCodes() 
-    {
+    public List<Cityinfo> getZipCodes() { //works
         EntityManager manager = factory.createEntityManager();
 
         List<Cityinfo> cityinfo = null;
 
         System.out.println("first");
-        try
-        {
+        try {
             System.out.println("second");
             manager.getTransaction().begin();
             cityinfo = manager.createQuery("Select c.zipCode from Cityinfo c").getResultList();
             System.out.println("third");
             manager.getTransaction().commit();
             return cityinfo;
+        } finally {
+            manager.close();
+        }
+    }
+    
+    public Cityinfo getCityinfo(int id) { //works
+    {
+        EntityManager manager = getEntityManager();
+
+        Cityinfo ci = null;
+
+        try
+        {
+            manager.getTransaction().begin();
+            ci = manager.find(Cityinfo.class, id);
+            manager.getTransaction().commit();
+            return ci;
+        }
+        finally
+        {
+            manager.close();
+        }
+    }
+    }
+   
+    public CityinfoMapper getZipcode(int zipcode) 
+    {
+        EntityManager manager = getEntityManager();
+
+        CityinfoMapper c = null;
+
+        try
+        {
+            manager.getTransaction().begin();
+            c = manager.find(CityinfoMapper.class, zipcode);
+            manager.getTransaction().commit();
+            return c;
         }
         finally
         {

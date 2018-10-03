@@ -60,8 +60,8 @@ public class JSONConverter {
     }
 
     //------------------------- Person --------------------//   
-    public   static Person getPersonFromJson(String js) {
-        return gson.fromJson(js, Person.class);
+    public   static PersonMapper getPersonFromJson(String js) {
+        return gson.fromJson(js, PersonMapper.class);
 
     }
 
@@ -69,7 +69,7 @@ public class JSONConverter {
         return gson.toJson(p);
     }
 
-    public  static String getJSONFromPersons(List<Person> persons) {
+    public  static String getJSONFromPersons(List<PersonMapper> persons) {
 
         return gson.toJson(persons);
     }
