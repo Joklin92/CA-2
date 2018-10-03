@@ -8,6 +8,7 @@ import entity.Cityinfo;
 import entity.Hobby;
 import java.util.ArrayList;
 import java.util.List;
+import mappers.PersonMapper;
 
 public class JSONConverter {
 
@@ -64,7 +65,7 @@ public class JSONConverter {
 
     }
 
-    public static String getJSONFromPerson(Person p) {
+    public static String getJSONFromPerson(PersonMapper p) {
         return gson.toJson(p);
     }
 
