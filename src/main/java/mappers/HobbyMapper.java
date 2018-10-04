@@ -3,7 +3,7 @@ package mappers;
 public class HobbyMapper {
     
     public String name;
-    public String desc;
+    public String description;
     
     public HobbyMapper() {
         

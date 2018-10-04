@@ -65,8 +65,8 @@ public class RandomTestDataGenerator {
                     side = "";
                 }
             p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(10000) + houseLetter + " " + side, city));
-          //  p.setHobbies(hobbies.get(rnd.nextInt(hobbies.size())));
             facade.addPerson(p);
+            facade.addHobbyToPerson(p, hobbies.get(rnd.nextInt(hobbies.size() )));                    
             houseLetter = "";
             side = "";
             } else {
@@ -75,3 +75,6 @@ public class RandomTestDataGenerator {
         }
     }
 }
+//            int hobbyAmount = rnd.nextInt(4);
+//                for (int j = 0; j < hobbyAmount; j++) {
+//                }

@@ -42,9 +42,16 @@ public class Hobby implements Serializable {
     public Hobby() {
     }
 
-    public Hobby(String name) {
-        this.name = name;
+    public Hobby(String description) {
+        this.description = description;
     }
+    
+    public Hobby(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+    
+    
 
     public String getName() {
         return name;
@@ -60,6 +67,9 @@ public class Hobby implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public void setHobbies(Person person) {
+        persons.add(person);
     }
 
     @Override
@@ -84,7 +94,9 @@ public class Hobby implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Hobby[ name=" + name + " ]";
+        return "Hobby{" + "name=" + name + ", description=" + description + '}';
     }
+
+    
     
 }

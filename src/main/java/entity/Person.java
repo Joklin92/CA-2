@@ -116,10 +116,9 @@ public class Person implements Serializable {
     
     public List<Hobby> getHobbies() {
         return hobbies;
-
     }
 
-    public void setHobbies(Hobby hobby) {
+    public void addHobbies(Hobby hobby) {
         hobbies.add(hobby);
     }
 

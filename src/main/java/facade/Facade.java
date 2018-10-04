@@ -91,7 +91,12 @@ public class Facade implements IFacade {
         pm = (PersonMapper) query.getSingleResult();
         return pm;
     }
-
+   
+    public Person getPerson(int id) {
+                EntityManager em = factory.createEntityManager();
+       return em.find(Person.class, id);
+    }
+ 
     @Override
     public PersonMapper getPersonByPhone(int phoneNumber) { //works
         PersonMapper p = null;
@@ -108,7 +113,7 @@ public class Facade implements IFacade {
         
         try {
             manager.getTransaction().begin();
-            result = manager.createQuery("Select new entity.Hobby(h.name) from Hobby h").getResultList();
+            result = manager.createQuery("Select new entity.Hobby(h.name, h.description) from Hobby h").getResultList();
             manager.getTransaction().commit();
         return result;            
         } finally {
@@ -203,6 +208,28 @@ public class Facade implements IFacade {
         }
     }
       
+//    public Hobby createHobby() {
+//        
+//    }
+    
+    public Hobby getHobby(String name) {
+        EntityManager em = factory.createEntityManager();
+       return em.find(Hobby.class, name);
+    }
+
+    
+    public void addHobbyToPerson(Person person, Hobby hobby) {
+        EntityManager em = factory.createEntityManager();
+        
+        person.addHobbies(hobby);
+        try {
+            em.getTransaction().begin();
+            em.merge(person);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
 
     //weird
     public CityinfoMapper getZipcode(int zipcode) {
