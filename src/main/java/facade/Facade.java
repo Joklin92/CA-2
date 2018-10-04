@@ -1,69 +1,171 @@
 package facade;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import entity.Address;
+import entity.Cityinfo;
+import entity.Hobby;
 import entity.Person;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.Query;
+import mappers.CityinfoMapper;
+import mappers.PersonMapper;
 
 public class Facade implements IFacade {
 
-    
-    EntityManagerFactory emf;
-         private static final String PERSISTENCE_UNIT_NAME = "persistence";
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    private EntityManagerFactory factory;
 
+    public Facade(EntityManagerFactory factory) {
+        this.factory = factory;
+    }
+
+    public Facade() {
+    }
+    
     @Override
     public void addEntityManagerFactory(EntityManagerFactory factory) {
-       this.emf = factory;
+        this.factory = factory;
     }
 
     @Override
     public EntityManager getEntityManager() {
-      return emf.createEntityManager(); 
-      
+        return factory.createEntityManager();
     }
 
     @Override
-    public void postPerson() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Person addPerson(Person person) { //works
+        EntityManager manager = getEntityManager();
+        try {
+            manager.getTransaction().begin();
+            manager.persist(person);
+            manager.getTransaction().commit();
+            return person;
+        } finally {
+            manager.close();
+        }
+    }
+
+    public List<PersonMapper> getAllPersons() { //works
+        EntityManager manager = factory.createEntityManager();
+
+        List<PersonMapper> pms = null;
+
+        try {
+            manager.getTransaction().begin();
+            pms = manager.createQuery("Select new mappers.PersonMapper(p.firstName, p.lastName) from Person p").getResultList();
+            manager.getTransaction().commit();
+            return pms;
+        } finally {
+            manager.close();
+        }
     }
 
     @Override
-    public Person putPerson() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public PersonMapper getPersonByPhone(int phoneNumber) { //works
+        PersonMapper p = null;
+
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName, p.phone) FROM Person AS p WHERE p.phone = :phone");
+        query.setParameter("phone", phoneNumber);
+        p = (PersonMapper) query.getSingleResult();
+        return p;
     }
 
     @Override
-    public void deletePerson(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Person> getPersonsByHobby(Hobby hobby) {
+        List<Person> byHobby = new ArrayList<>();
+        System.out.println("Name of hobby: " + hobby);
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p LEFT JOIN p.hobbys h WHERE h.name = :hobby");
+        query.setParameter("name", hobby);
+        byHobby = query.getResultList();
+        return byHobby;
+    }
+
+  
+    public List<PersonMapper> getPersonsByCity(int zipcode) {    //works    
+        List<PersonMapper> byCity = new ArrayList<>();        
+
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p JOIN p.address a WHERE a.city.zipCode = :ZIP");
+        query.setParameter("ZIP", zipcode);
+        byCity = query.getResultList();
+        return byCity;
+    }
+    
+    public List<Address> getAddressByZip(int zipcode) { //works
+        List<Address> addresses = new ArrayList();  
+
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.AddressMapper(a.street) FROM Address AS a WHERE a.city.zipCode = :CITY_ZIP");
+        query.setParameter("CITY_ZIP", zipcode);
+        addresses = query.getResultList();
+
+        return addresses;
     }
 
     @Override
-    public Person getPersonByPhone(int phoneNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Long getPeopleCountByHobby(Hobby hobby) {
+        Long total;
+
+        Query query = getEntityManager().createQuery("SELECT SUM(SIZE(h.hobbys)) FROM Hobby h where h.name = :name");
+        total = (Long) query.getSingleResult();
+        return total;
     }
 
     @Override
-    public List<Integer> getZipCodes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Cityinfo> getZipCodes() { //works
+        EntityManager manager = factory.createEntityManager();
 
-    @Override
-    public List<Person> getPersonsByHobby(String hobby) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Cityinfo> cityinfo = null;
+        System.out.println("first");
+        try {
+            System.out.println("second");
+            manager.getTransaction().begin();
+            cityinfo = manager.createQuery("Select c.zipCode from Cityinfo c").getResultList();
+            System.out.println("third");
+            manager.getTransaction().commit();
+            return cityinfo;
+        } finally {
+            manager.close();
+        }
     }
+    
+    public Cityinfo getSpecificCity(int id) { //works
+    {
+        EntityManager manager = getEntityManager();
 
-    @Override
-    public List<Person> getPersonsByCity(String city) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cityinfo ci = null;
+
+        try
+        {
+            manager.getTransaction().begin();
+            ci = manager.find(Cityinfo.class, id);
+            manager.getTransaction().commit();
+            return ci;
+        }
+        finally
+        {
+            manager.close();
+        }
     }
-
-    @Override
-    public Integer getPeopleCountByHobby(String hobby) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+   
+    
+    //weird
+    public CityinfoMapper getZipcode(int zipcode) 
+    {
+        EntityManager manager = getEntityManager();
 
+        CityinfoMapper c = null;
+
+        try
+        {
+            manager.getTransaction().begin();
+            c = manager.find(CityinfoMapper.class, zipcode);
+            manager.getTransaction().commit();
+            return c;
+        }
+        finally
+        {
+            manager.close();
+        }
+    }
 }

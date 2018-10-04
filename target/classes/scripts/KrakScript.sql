@@ -1,4 +1,4 @@
-drop database krak;
+drop database IF EXISTS krak;
 CREATE DATABASE  IF NOT EXISTS `krak`;
 USE `krak`;
 

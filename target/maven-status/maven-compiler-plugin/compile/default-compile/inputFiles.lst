@@ -5,10 +5,14 @@ C:\Users\Jokli\Documents\repos\CA-2\src\main\java\entity\Address.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\PersonResource.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\AddressResource.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\tester\tester.java
+C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\JSONConverter.java
+C:\Users\Jokli\Documents\repos\CA-2\src\main\java\mappers\AddressMapper.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\generator\RandomTestDataGenerator.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\facade\Facade.java
+C:\Users\Jokli\Documents\repos\CA-2\src\main\java\mappers\CityinfoMapper.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\entity\Cityinfo.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\ApplicationConfig.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\HobbyResource.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\CityInfoResource.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\facade\IFacade.java
+C:\Users\Jokli\Documents\repos\CA-2\src\main\java\mappers\PersonMapper.java

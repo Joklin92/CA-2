@@ -1,26 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Jollys
- */
 @Entity
 @Table(name = "cityinfo")
 @NamedQueries({
@@ -34,20 +30,14 @@ public class Cityinfo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ZIP")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private Integer zipCode;
     @Size(max = 45)
     @Column(name = "CITY")
     private String city;
-    @ManyToOne
-    private Address addressCity;
-
-    public Address getAddressCity() {
-        return addressCity;
-    }
-
-    public void setAddressCity(Address addressCity) {
-        this.addressCity = addressCity;
-    }
+    
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "city")
+    private List<Address> addressCity = new ArrayList();
 
     public Cityinfo() {
     }
@@ -56,6 +46,16 @@ public class Cityinfo implements Serializable {
         this.zipCode = zipCode;
     }
 
+    public List<Address> getAddressCity() {
+        return addressCity;
+    }
+
+    public void setAddressCity(List<Address> addressCity) {
+        this.addressCity = addressCity;
+    }
+
+    
+    
     public Integer getZipCode() {
         return zipCode;
     }
