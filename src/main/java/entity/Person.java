@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,20 +49,27 @@ public class Person implements Serializable {
     //Address
     @Size(max = 45)
     @JoinColumn(name = "Address")
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @Column(name = "Phone")
-     private int phone;       
-   // Hobbys
-    @ManyToMany (cascade = CascadeType.ALL)
-    List<Hobby> hobbys = new ArrayList();   
+    private int phone;
+    // Hobbys
+    @ManyToMany(cascade = CascadeType.ALL)
+    List<Hobby> hobbys = new ArrayList();
 
     public Person() {
     }
 
     public Person(Integer id) {
         this.id = id;
+    }
+
+    public Person(String firstName, String lastName, Address address, int phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
     }
 
     public Person(String firstName, String lastName, int phone) {
@@ -74,8 +82,6 @@ public class Person implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -115,7 +121,7 @@ public class Person implements Serializable {
 
     public void setHobbys(List<Hobby> hobbys) {
         this.hobbys = hobbys;
-    }  
+    }
 
     public Address getAddress() {
         return address;
@@ -124,9 +130,7 @@ public class Person implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -135,13 +139,33 @@ public class Person implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Person other = (Person) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Person other = (Person) obj;
+        if (this.phone != other.phone) {
+            return false;
+        }
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.address, other.address)) {
+            return false;
+        }
+        if (!Objects.equals(this.hobbys, other.hobbys)) {
             return false;
         }
         return true;
@@ -151,5 +175,5 @@ public class Person implements Serializable {
     public String toString() {
         return "entity.Person[ id=" + id + " ]";
     }
-    
+
 }

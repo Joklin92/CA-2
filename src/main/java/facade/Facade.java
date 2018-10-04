@@ -46,10 +46,10 @@ public class Facade implements IFacade {
         }
     }
 
-    public List<PersonMapper> getAllPersons() { //works
+    public List<PersonMapper> getallcompletePersons() { //works
         EntityManager manager = factory.createEntityManager();
 
-        List<PersonMapper> pms = null;
+        List<PersonMapper> pms;
 
         try {
             manager.getTransaction().begin();
@@ -60,6 +60,52 @@ public class Facade implements IFacade {
             manager.close();
         }
     }
+    
+    
+      public Person getcompletePerson(int id) {
+        EntityManager em = factory.createEntityManager();
+
+        try {
+            Person p = em.find(Person.class, id);
+            if (p == null) {
+                return null;
+            }
+            return p;
+        } finally {
+            em.close();
+        }
+    }
+      
+      public List<PersonMapper> getallcontactinfo() { //works
+        EntityManager manager = factory.createEntityManager();
+
+        List<PersonMapper> pms = null;
+
+        try {
+            manager.getTransaction().begin();
+            pms = manager.createQuery("Select new mappers.PersonMapper(p.firstName, p.lastName, p.address) from Person p").getResultList();
+            manager.getTransaction().commit();
+            return pms;
+        } finally {
+            manager.close();
+        }
+    }
+      
+      public Person getPersonbyid(int id) {
+        EntityManager em = factory.createEntityManager();
+
+        try {
+            Person p = em.find(Person.class, id);
+            if (p == null) {
+                return null;
+            }
+            return p;
+        } finally {
+            em.close();
+        }
+    }      
+      
+    
 
     @Override
     public PersonMapper getPersonByPhone(int phoneNumber) { //works
@@ -130,6 +176,19 @@ public class Facade implements IFacade {
             return cityinfo;
         } finally {
             manager.close();
+        }
+    }
+        
+        public Person deletePerson(int id) {
+        EntityManager em = factory.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Person p = em.find(Person.class, id);
+            em.remove(p);
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
         }
     }
     

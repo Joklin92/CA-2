@@ -11,30 +11,21 @@ import java.util.List;
  */
 public class PersonMapper {
 
+    private Integer id;
     public String fullName;
+    private String firstName;
+    private String lastName;
     private Address address;
     private int phone;
-
     private String[] hobbies;
 
     public PersonMapper() {
     }
 
-   
-    public PersonMapper(String firstName, String lastName) {
-        this.fullName = firstName + " " + lastName;
-    }
-    
-    public PersonMapper(String firstName, String lastName, int phonenumber) {
-        this.fullName = firstName + " " + lastName;
-        this.phone = phonenumber;
-    }
-
-
     public PersonMapper(Person person) {
         this.fullName = person.getFirstName() + " " + person.getLastName();
         this.address = person.getAddress();
-        this.phonenumber = person.getPhone();
+        this.phone = person.getPhone();
 
         List<Hobby> hobby = person.getHobbys();
         this.hobbies = new String[hobby.size()];
@@ -44,6 +35,86 @@ public class PersonMapper {
             String h = hob.getName() + " " + hob.getDescription();
             hobbies[i] = h;
         }
+    }
+
+    public PersonMapper(String firstName, String lastName) {
+        this.fullName = firstName + " " + lastName;
+    }
+
+//    public PersonMapper(String firstName, String lastName, int phonenumber) {
+//        this.fullName = firstName + " " + lastName;
+//        this.phone = phonenumber;
+//    }
+    public PersonMapper(String firstName, String lastName, Address address) {
+        this.fullName = firstName + " " + lastName;
+        this.address = address;
+    }
+
+    public PersonMapper(Integer id, String firstName, String lastName, Address address, int phone) {
+        this.id = id;
+        this.fullName = firstName + " " + lastName;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public PersonMapper(Integer id, String firstName, String lastName, Address address, int phone, String[] hobbies) {
+        this.id = id;
+        this.fullName = firstName + " " + lastName;
+        this.address = address;
+        this.phone = phone;
+        this.hobbies = hobbies;
+    }
+
+   
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+ 
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String[] getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String[] hobbies) {
+        this.hobbies = hobbies;
     }
 
     @Override
