@@ -63,7 +63,6 @@ public class Facade implements IFacade {
 
     @Override
     public PersonMapper getPersonByPhone(int phoneNumber) { //works
-        EntityManager manager = getEntityManager();
         PersonMapper p = null;
 
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName, p.phone) FROM Person AS p WHERE p.phone = :phone");
@@ -83,7 +82,7 @@ public class Facade implements IFacade {
     }
 
   
-    public List<PersonMapper> getPersonsByCity(int zipcode) {        
+    public List<PersonMapper> getPersonsByCity(int zipcode) {    //works    
         List<PersonMapper> byCity = new ArrayList<>();        
 
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p JOIN p.address a WHERE a.city.zipCode = :ZIP");
@@ -92,7 +91,7 @@ public class Facade implements IFacade {
         return byCity;
     }
     
-    public List<Address> getAddressByZip(int zipcode) {
+    public List<Address> getAddressByZip(int zipcode) { //works
         List<Address> addresses = new ArrayList();  
 
         Query query = getEntityManager().createQuery("SELECT NEW mappers.AddressMapper(a.street) FROM Address AS a WHERE a.city.zipCode = :CITY_ZIP");
@@ -129,7 +128,7 @@ public class Facade implements IFacade {
         }
     }
     
-    public Cityinfo getCityinfo(int id) { //works
+    public Cityinfo getSpecificCity(int id) { //works
     {
         EntityManager manager = getEntityManager();
 
@@ -149,6 +148,8 @@ public class Facade implements IFacade {
     }
     }
    
+    
+    //weird
     public CityinfoMapper getZipcode(int zipcode) 
     {
         EntityManager manager = getEntityManager();
