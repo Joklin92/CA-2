@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 C:\Users\Jacob\Documents\Dat. 3. Semester\CA-2\src\main\java\facade\IFacade.java
 C:\Users\Jacob\Documents\Dat. 3. Semester\CA-2\src\main\java\rest\JSONConverter.java
 C:\Users\Jacob\Documents\Dat. 3. Semester\CA-2\src\main\java\entity\Cityinfo.java
@@ -23,6 +25,7 @@ C:\Users\Jacob\Documents\Dat. 3. Semester\CA-2\src\main\java\mappers\PersonMappe
 <<<<<<< HEAD
 =======
 >>>>>>> rest
+>>>>>>> 9f0e2f77111a9ae4f1d68f6daf1fc8418a9b16c7
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\tester\tester.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\entity\Address.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\mappers\PersonMapper.java
@@ -40,6 +43,9 @@ C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\entity\Cityinfo.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\facade\Facade.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\rest\AddressResource.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\facade\IFacade.java
+<<<<<<< HEAD
+C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\mappers\HobbyMapper.java
+=======
 <<<<<<< HEAD
 =======
 =======
@@ -67,3 +73,4 @@ C:\Users\Jokli\Documents\repos\CA-2\src\main\java\mappers\PersonMapper.java
 =======
 >>>>>>> rest
 >>>>>>> 450bc43f4102476909af1f0caa5c330ad7859478
+>>>>>>> 9f0e2f77111a9ae4f1d68f6daf1fc8418a9b16c7
