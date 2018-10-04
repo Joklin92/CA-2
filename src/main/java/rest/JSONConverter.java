@@ -8,6 +8,7 @@ import entity.Cityinfo;
 import entity.Hobby;
 import java.util.ArrayList;
 import java.util.List;
+import mappers.PersonMapper;
 
 public class JSONConverter {
 
@@ -58,7 +59,22 @@ public class JSONConverter {
         return gson.toJson(hobbys);
     }
 
-    //------------------------- Person --------------------//   
+    //------------------------- PersonMapper --------------------//   
+    public   static PersonMapper getPersonMapperFromJson(String js) {
+        return gson.fromJson(js, PersonMapper.class);
+
+    }
+
+    public static String getJSONFromPersonMapper(PersonMapper p) {
+        return gson.toJson(p);
+    }
+
+    public  static String getJSONFromPersonMapper(List<PersonMapper> persons) {
+
+        return gson.toJson(persons);
+    }
+    
+      //------------------------- Person--------------------//   
     public static Person getPersonFromJson(String js) {
         return gson.fromJson(js, Person.class);
 
@@ -68,7 +84,7 @@ public class JSONConverter {
         return gson.toJson(p);
     }
 
-    public static String getJSONFromPersons(List<Person> persons) {
+    public  static String getJSONFromPersons(List<Person> persons) {
 
         return gson.toJson(persons);
     }
@@ -77,6 +93,6 @@ public class JSONConverter {
 
         List<Person> al = new ArrayList();
 
-        System.out.println(getJSONFromPersons(al));
+      
     }
 }

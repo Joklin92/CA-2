@@ -40,9 +40,9 @@ public class RandomTestDataGenerator {
             p.setFirstName(firstNames[rnd.nextInt(firstNames.length)]);
             p.setLastName(lastNames[rnd.nextInt(lastNames.length)]);
             p.setPhone(rnd.nextInt(88888888) + 11111111);
-            
+
             Cityinfo city = facade.getSpecificCity(100 + rnd.nextInt(5871));
-            
+
             if(city != null) {
                 randomizer = rnd.nextInt(15)+1;
                 if(randomizer <= 3) {
@@ -64,7 +64,7 @@ public class RandomTestDataGenerator {
                 } else {
                     side = "";
                 }
-            p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(10000) + houseLetter + " " + side, city));                    
+            p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(10000) + houseLetter + " " + side, city));
           //  p.setHobbies(hobbies.get(rnd.nextInt(hobbies.size())));
             facade.addPerson(p);
             houseLetter = "";

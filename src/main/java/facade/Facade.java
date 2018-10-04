@@ -22,7 +22,7 @@ public class Facade implements IFacade {
 
     public Facade() {
     }
-    
+
     @Override
     public void addEntityManagerFactory(EntityManagerFactory factory) {
         this.factory = factory;
@@ -46,19 +46,50 @@ public class Facade implements IFacade {
         }
     }
 
-    public List<PersonMapper> getAllPersons() { //works
+    public List<PersonMapper> getallcompletePersons() { //works
         EntityManager manager = factory.createEntityManager();
 
         List<PersonMapper> pms = new ArrayList();
 
         try {
             manager.getTransaction().begin();
-            pms = manager.createQuery("Select new mappers.PersonMapper(p.firstName, p.lastName) from Person p").getResultList();
+            pms = manager.createQuery("Select new mappers.PersonMapper(p.firstName, p.lastName, p.phone) from Person p").getResultList();
+            System.out.println(pms);
             manager.getTransaction().commit();
             return pms;
         } finally {
             manager.close();
         }
+    }
+
+    public Person getcompletePerson(int id) {
+        EntityManager em = factory.createEntityManager();
+
+        try {
+            Person p = em.find(Person.class, id);
+            if (p == null) {
+                return null;
+            }
+            return p;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<PersonMapper> getallcontactinfo() { //works
+
+        List<PersonMapper> pm = new ArrayList<>();
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p");
+        pm = query.getResultList();
+        return pm;
+    }
+
+    public PersonMapper getPersonbyid(int id) {
+        PersonMapper pm = null;
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p WHERE p.id = :id");
+        query.setParameter("id", id);
+        pm = (PersonMapper) query.getSingleResult();
+        return pm;
     }
 
     @Override
@@ -90,23 +121,22 @@ public class Facade implements IFacade {
         List<Person> byHobby = new ArrayList<>();
         System.out.println("Name of hobby: " + hobby);
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p LEFT JOIN p.hobbys h WHERE h.name = :hobby");
-        query.setParameter("name", hobby);
-        byHobby = query.getResultList();
+        query.setParameter("hobby", hobby);
+
         return byHobby;
     }
 
-  
     public List<PersonMapper> getPersonsByCity(int zipcode) {    //works    
-        List<PersonMapper> byCity = new ArrayList<>();        
+        List<PersonMapper> byCity = new ArrayList<>();
 
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p JOIN p.address a WHERE a.city.zipCode = :ZIP");
         query.setParameter("ZIP", zipcode);
         byCity = query.getResultList();
         return byCity;
     }
-    
+
     public List<Address> getAddressByZip(int zipcode) { //works
-        List<Address> addresses = new ArrayList();  
+        List<Address> addresses = new ArrayList();
 
         Query query = getEntityManager().createQuery("SELECT NEW mappers.AddressMapper(a.street) FROM Address AS a WHERE a.city.zipCode = :CITY_ZIP");
         query.setParameter("CITY_ZIP", zipcode);
@@ -129,6 +159,7 @@ public class Facade implements IFacade {
         EntityManager manager = factory.createEntityManager();
 
         List<Cityinfo> cityinfo = null;
+
         System.out.println("first");
         try {
             System.out.println("second");
@@ -141,43 +172,70 @@ public class Facade implements IFacade {
             manager.close();
         }
     }
-    
-    public Cityinfo getSpecificCity(int id) { //works
-    {
-        EntityManager manager = getEntityManager();
 
-        Cityinfo ci = null;
-
-        try
-        {
-            manager.getTransaction().begin();
-            ci = manager.find(Cityinfo.class, id);
-            manager.getTransaction().commit();
-            return ci;
-        }
-        finally
-        {
-            manager.close();
+    public Person deletePerson(int id) {
+        EntityManager em = factory.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Person p = em.find(Person.class, id);
+            em.remove(p);
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
         }
     }
-    }   
+
+    public Cityinfo getSpecificCity(int id) { //works
+        {
+            EntityManager manager = getEntityManager();
+
+            Cityinfo ci = null;
+
+            try {
+                manager.getTransaction().begin();
+                ci = manager.find(Cityinfo.class, id);
+                manager.getTransaction().commit();
+                return ci;
+            } finally {
+                manager.close();
+            }
+        }
+    }
+      
+
     //weird
-    public CityinfoMapper getZipcode(int zipcode) 
-    {
+    public CityinfoMapper getZipcode(int zipcode) {
         EntityManager manager = getEntityManager();
 
         CityinfoMapper c = null;
 
-        try
-        {
+        try {
             manager.getTransaction().begin();
             c = manager.find(CityinfoMapper.class, zipcode);
             manager.getTransaction().commit();
             return c;
-        }
-        finally
-        {
+        } finally {
             manager.close();
+        }
+    }
+
+    public Person editPerson(Person person) {
+        EntityManager em = factory.createEntityManager();
+
+        Person p = null;
+
+        try {
+            em.getTransaction().begin();
+            p = em.find(Person.class, person.getId());
+            System.out.println("You are here " + p);
+            if (p != null) {
+                em.merge(person);
+            }
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
         }
     }
 }

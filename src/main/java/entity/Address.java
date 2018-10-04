@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -103,17 +104,33 @@ public class Address implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Address other = (Address) object;
-        if ((this.street == null && other.street != null) || (this.street != null && !this.street.equals(other.street))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Address other = (Address) obj;
+        if (!Objects.equals(this.street, other.street)) {
+            return false;
+        }
+        if (!Objects.equals(this.additionalInfo, other.additionalInfo)) {
+            return false;
+        }
+        if (!Objects.equals(this.personAddress, other.personAddress)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
             return false;
         }
         return true;
     }
+
+  
 
     @Override
     public String toString() {
