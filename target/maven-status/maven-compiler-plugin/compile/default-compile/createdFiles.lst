@@ -1,6 +1,7 @@
 entity\Cityinfo_.class
 mappers\AddressMapper.class
 rest\AddressResource.class
+mappers\HobbyMapper.class
 entity\Cityinfo.class
 rest\CityInfoResource.class
 tester\tester.class

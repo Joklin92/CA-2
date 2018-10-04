@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\tester\tester.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\entity\Address.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\mappers\PersonMapper.java
@@ -17,6 +18,9 @@ C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\facade\Facade.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\rest\AddressResource.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\facade\IFacade.java
 =======
+=======
+C:\Users\Jokli\Documents\repos\CA-2\src\main\java\mappers\HobbyMapper.java
+>>>>>>> d3d3d3f2c4e18ab8757690c01c3f4e1e7e2e2f4e
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\entity\Hobby.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\PhoneResource.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\entity\Person.java

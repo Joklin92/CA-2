@@ -56,7 +56,7 @@ public class Person implements Serializable {
     private int phone;
     // Hobbys
     @ManyToMany(cascade = CascadeType.ALL)
-    List<Hobby> hobbys = new ArrayList();
+    List<Hobby> hobbies = new ArrayList();
 
     public Person() {
     }
@@ -77,7 +77,6 @@ public class Person implements Serializable {
         this.lastName = lastName;
         this.phone = phone;
     }
-
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -115,12 +114,12 @@ public class Person implements Serializable {
         this.phone = phone;
     }
 
-    public List<Hobby> getHobbys() {
-        return hobbys;
+    public List<Hobby> getHobbies() {
+        return hobbies;
     }
 
-    public void setHobbys(List<Hobby> hobbys) {
-        this.hobbys = hobbys;
+    public void setHobbies(Hobby hobby) {
+        hobbies.add(hobby);
     }
 
     public Address getAddress() {
@@ -165,7 +164,7 @@ public class Person implements Serializable {
         if (!Objects.equals(this.address, other.address)) {
             return false;
         }
-        if (!Objects.equals(this.hobbys, other.hobbys)) {
+        if (!Objects.equals(this.hobbies, other.hobbies)) {
             return false;
         }
         return true;
