@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `Street` varchar(45) NOT NULL,
   `AdditionalInfo` varchar(45) DEFAULT NULL,
-  `City` varchar(45) DEFAULT NULL,
+  `CITY_ZIP` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Street`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -35,6 +35,9 @@ CREATE TABLE `hobby` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='	';
 
 LOCK TABLES `hobby` WRITE;
+
+INSERT INTO `hobby` VALUES ('Tennis', 'Ketchersport'), ('Fodbold', 'Boldsport'), ('Baseball','Batsport'), ('Film', 'Sofaslidning'), ('Film Voksne', 'Sengslidning'), ('Computer','Tech nørd'), ('Magic', 'Nørd'), ('Poker','Kortsport');
+
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `person`;
@@ -43,22 +46,9 @@ CREATE TABLE `person` (
   `FirstName` varchar(45) DEFAULT NULL,
   `LastName` varchar(45) DEFAULT NULL,
   `Address` varchar(45) DEFAULT NULL,
-  `Phone` int(11) DEFAULT NULL,
+  `Phone` int(11) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='		';
 
 LOCK TABLES `person` WRITE;
-UNLOCK TABLES;
-
-DROP TABLE IF EXISTS `person_hobby`;
-CREATE TABLE `person_hobby` (
-  `hobbys_id` int(11) NOT NULL AUTO_INCREMENT,
-  `hobbys_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`hobbys_id`,`hobbys_name`),
-  KEY `FK_person_hobby_hobbys_name` (`hobbys_name`),
-  CONSTRAINT `FK_person_hobby_hobbys_id` FOREIGN KEY (`hobbys_id`) REFERENCES `person` (`id`),
-  CONSTRAINT `FK_person_hobby_hobbys_name` FOREIGN KEY (`hobbys_name`) REFERENCES `hobby` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `person_hobby` WRITE;
 UNLOCK TABLES;

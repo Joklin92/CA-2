@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,8 +36,8 @@ public class Hobby implements Serializable {
     @Column(name = "description")
     private String description;
     
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "hobbys")
-    private List<Person> hobbys = new ArrayList();
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "hobbies")
+    private List<Person> persons = new ArrayList();
 
     public Hobby() {
     }
