@@ -37,7 +37,6 @@ public class RandomTestDataGenerator {
             p.setLastName(lastNames[rnd.nextInt(lastNames.length)]);
             p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(500)));
             
-<<<<<<< HEAD
             
 //            Cityinfo city = facade.getCityinfo(100 + rnd.nextInt(5871));
 //            
@@ -47,7 +46,6 @@ public class RandomTestDataGenerator {
 //            } else {
 //                i--;
 //            }
-=======
             Cityinfo city = facade.getSpecificCity(100 + rnd.nextInt(5871));
             
             if(city != null) {
@@ -78,7 +76,6 @@ public class RandomTestDataGenerator {
             } else {
                 i--;
             }
->>>>>>> ce469df43b87296305d551169f2c70d11ff14be5
         }
     }
 }

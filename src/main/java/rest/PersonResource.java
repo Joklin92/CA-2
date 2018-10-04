@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entity.Cityinfo;
 import entity.Person;
 import facade.Facade;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
@@ -35,7 +37,7 @@ public class PersonResource {
         pf.addEntityManagerFactory(emf);
     }
 
-    @GET//work
+    @GET//not 100% it take with phone
     @Path("complete") //with a sematic url parameter
     @Produces(MediaType.APPLICATION_JSON)
     public String getallPerson() {
@@ -48,17 +50,29 @@ public class PersonResource {
 
     }
 
-    @GET // not work
-    @Path("complete/{id}") //with a sematic url parameter
+    @GET // work
+    @Path("/{id}") //with a sematic url parameter
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonByid(@PathParam("id") int id) {
-        System.out.println("first");
-        Person p = pf.getPersonbyid(id);
+        System.out.println("first" + id);
+        PersonMapper p = pf.getPersonbyid(id);
 
-        return JSONConverter.getJSONFromPerson(p);
+        return JSONConverter.getJSONFromPersonMapper(p);
+    }
+    
+    @GET // work
+    @Path("/allZips") //with a sematic url parameter
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllZips() {
+        List<Cityinfo> cityinfo = pf.getZipCodes();
+        if (cityinfo == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+
+        return JSONConverter.getJSONFromCityinfos(cityinfo);
     }
 
-    @GET // not work
+    @GET //work
     @Path("contactinfo") //with a sematic url parameter
     @Produces(MediaType.APPLICATION_JSON)
     public String getallcontactinfoPerson() {
@@ -72,7 +86,7 @@ public class PersonResource {
     }
 
     @GET // work
-    @Path("{phone}") //with a sematic url parameter
+    @Path("phone/{phone}") //with a sematic url parameter
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonByPhone(@PathParam("phone") int phone) {
         PersonMapper p = pf.getPersonByPhone(phone);
@@ -91,6 +105,19 @@ public class PersonResource {
 
         return Response.ok().entity(gson.toJson(p)).build();
     }
+    
+      @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response putPerson(String json) {
+        Person newperson = JSONConverter.getPersonFromJson(json);
+
+        
+
+        pf.editPerson(newperson);
+        return Response.ok().entity(gson.toJson(newperson)).build();
+    }
+    
     
      @DELETE
     @Path("{id}")
