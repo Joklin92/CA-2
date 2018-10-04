@@ -22,7 +22,7 @@ public class Facade implements IFacade {
 
     public Facade() {
     }
-
+    
     @Override
     public void addEntityManagerFactory(EntityManagerFactory factory) {
         this.factory = factory;
@@ -109,7 +109,6 @@ public class Facade implements IFacade {
 
     @Override
     public PersonMapper getPersonByPhone(int phoneNumber) { //works
-        EntityManager manager = getEntityManager();
         PersonMapper p = null;
 
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName, p.phone) FROM Person AS p WHERE p.phone = :phone");
@@ -129,19 +128,16 @@ public class Facade implements IFacade {
     }
 
   
-    public List<Person> getPersonsByCity(List<Address> addresses) {        
-        List<Person> byCity = new ArrayList<>();
-        System.out.println("first");
-        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p LEFT JOIN p.address h WHERE h.street = :street");
-        for (int i = 0; i < addresses.size(); i++) {
-        query.setParameter("street", addresses.get(i));
-        byCity.add((Person) query.getSingleResult());
-        }
-        System.out.println("done");
+    public List<PersonMapper> getPersonsByCity(int zipcode) {    //works    
+        List<PersonMapper> byCity = new ArrayList<>();        
+
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p JOIN p.address a WHERE a.city.zipCode = :ZIP");
+        query.setParameter("ZIP", zipcode);
+        byCity = query.getResultList();
         return byCity;
     }
     
-    public List<Address> getAddressByZip(int zipcode) {
+    public List<Address> getAddressByZip(int zipcode) { //works
         List<Address> addresses = new ArrayList();  
 
         Query query = getEntityManager().createQuery("SELECT NEW mappers.AddressMapper(a.street) FROM Address AS a WHERE a.city.zipCode = :CITY_ZIP");
@@ -192,7 +188,7 @@ public class Facade implements IFacade {
         }
     }
     
-    public Cityinfo getCityinfo(int id) { //works
+    public Cityinfo getSpecificCity(int id) { //works
     {
         EntityManager manager = getEntityManager();
 
@@ -212,6 +208,8 @@ public class Facade implements IFacade {
     }
     }
    
+    
+    //weird
     public CityinfoMapper getZipcode(int zipcode) 
     {
         EntityManager manager = getEntityManager();
