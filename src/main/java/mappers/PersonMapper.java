@@ -39,12 +39,16 @@ public class PersonMapper {
 
     public PersonMapper(String firstName, String lastName) {
         this.fullName = firstName + " " + lastName;
+        
     }
 
-//    public PersonMapper(String firstName, String lastName, int phonenumber) {
-//        this.fullName = firstName + " " + lastName;
-//        this.phone = phonenumber;
-//    }
+
+    
+    
+    public PersonMapper(String firstName, String lastName, int phonenumber) {
+        this.fullName = firstName + " " + lastName;
+        this.phone = phonenumber;
+    }
     public PersonMapper(String firstName, String lastName, Address address) {
         this.fullName = firstName + " " + lastName;
         this.address = address;
@@ -101,13 +105,7 @@ public class PersonMapper {
         this.address = address;
     }
 
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
+    
 
     public String[] getHobbies() {
         return hobbies;

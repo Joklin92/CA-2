@@ -1,5 +1,8 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> rest
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\tester\tester.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\entity\Address.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\mappers\PersonMapper.java
@@ -17,6 +20,7 @@ C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\entity\Cityinfo.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\facade\Facade.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\rest\AddressResource.java
 C:\Users\jobje\Desktop\Skole CPH\CPH 3\CA-2\src\main\java\facade\IFacade.java
+<<<<<<< HEAD
 =======
 =======
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\mappers\HobbyMapper.java
@@ -40,3 +44,5 @@ C:\Users\Jokli\Documents\repos\CA-2\src\main\java\rest\CityInfoResource.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\facade\IFacade.java
 C:\Users\Jokli\Documents\repos\CA-2\src\main\java\mappers\PersonMapper.java
 >>>>>>> ce469df43b87296305d551169f2c70d11ff14be5
+=======
+>>>>>>> rest

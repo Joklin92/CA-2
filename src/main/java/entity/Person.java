@@ -69,13 +69,13 @@ public class Person implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.phone = phone;
+        this.phone = 11;
     }
 
     public Person(String firstName, String lastName, int phone) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phone = phone;
+        this.phone = 12;
     }
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
@@ -113,9 +113,10 @@ public class Person implements Serializable {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-
+    
     public List<Hobby> getHobbies() {
         return hobbies;
+
     }
 
     public void setHobbies(Hobby hobby) {

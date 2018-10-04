@@ -1,4 +1,5 @@
 entity\Cityinfo_.class
+<<<<<<< HEAD
 mappers\AddressMapper.class
 rest\AddressResource.class
 mappers\HobbyMapper.class
@@ -7,6 +8,8 @@ rest\CityInfoResource.class
 tester\tester.class
 rest\ApplicationConfig.class
 generator\RandomTestDataGenerator.class
+=======
+>>>>>>> rest
 facade\IFacade.class
 entity\Address.class
 mappers\AddressMapper.class
@@ -19,9 +22,11 @@ facade\Facade.class
 mappers\PersonMapper.class
 rest\PersonResource.class
 mappers\CityinfoMapper.class
-<<<<<<< HEAD
 rest\AddressResource.class
-=======
->>>>>>> ce469df43b87296305d551169f2c70d11ff14be5
 entity\Address_.class
+entity\Cityinfo.class
+rest\CityInfoResource.class
+tester\tester.class
+rest\ApplicationConfig.class
+generator\RandomTestDataGenerator.class
 rest\HobbyResource.class
