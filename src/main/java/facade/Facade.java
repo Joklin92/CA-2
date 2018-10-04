@@ -79,7 +79,7 @@ public class Facade implements IFacade {
     public List<PersonMapper> getallcontactinfo() { //works
 
         List<PersonMapper> pm = new ArrayList<>();
-        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p");
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName, p.address, p.phone) FROM Person AS p");
         pm = query.getResultList();
         return pm;
     }

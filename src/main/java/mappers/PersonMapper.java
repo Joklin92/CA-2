@@ -15,7 +15,7 @@ public class PersonMapper {
     public String fullName;
     private String firstName;
     private String lastName;
-    private Address address;
+    private String address;
     private int phone;
     private String[] hobbies;
 
@@ -24,7 +24,7 @@ public class PersonMapper {
 
     public PersonMapper(Person person) {
         this.fullName = person.getFirstName() + " " + person.getLastName();
-        this.address = person.getAddress();
+       // this.address = person.getAddress();
         this.phone = person.getPhone();
 
         List<Hobby> hobby = person.getHobbies();
@@ -37,10 +37,10 @@ public class PersonMapper {
         }
     }
 
-    public PersonMapper(String firstName, String lastName) {
-        this.fullName = firstName + " " + lastName;
-        
-    }
+//    public PersonMapper(String firstName, String lastName) {
+//        this.fullName = firstName + " " + lastName;
+//        
+//    }
 
 
     
@@ -49,25 +49,14 @@ public class PersonMapper {
         this.fullName = firstName + " " + lastName;
         this.phone = phonenumber;
     }
-    public PersonMapper(String firstName, String lastName, Address address) {
+    
+    public PersonMapper(String firstName, String lastName, Address address, int phonenumber) {
         this.fullName = firstName + " " + lastName;
-        this.address = address;
+        this.address = address.getStreet() + address.getCityinfo().getCity();
+        this.phone = phonenumber;
     }
 
-    public PersonMapper(Integer id, String firstName, String lastName, Address address, int phone) {
-        this.id = id;
-        this.fullName = firstName + " " + lastName;
-        this.address = address;
-        this.phone = phone;
-    }
-
-    public PersonMapper(Integer id, String firstName, String lastName, Address address, int phone, String[] hobbies) {
-        this.id = id;
-        this.fullName = firstName + " " + lastName;
-        this.address = address;
-        this.phone = phone;
-        this.hobbies = hobbies;
-    }
+    
 
    
 
@@ -97,13 +86,7 @@ public class PersonMapper {
 
  
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+   
 
     
 
