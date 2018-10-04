@@ -21,16 +21,13 @@ public class PersonMapper
     public PersonMapper(String firstName, String lastName) {
         this.fullName = firstName + " " + lastName;
     }
-    
-    
-    
 
     public PersonMapper(Person person) {
         this.fullName = person.getFirstName() + " " + person.getLastName();
         this.address = person.getAddress();
         this.phone = person.getPhone();
 
-        List<Hobby> hobby = person.getHobbys();
+        List<Hobby> hobby = person.getHobbies();
         this.hobbies = new String[hobby.size()];
 
         for(int i = 0; i < hobby.size(); i++)

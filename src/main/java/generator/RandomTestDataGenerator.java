@@ -2,12 +2,12 @@ package generator;
 
 import entity.Address;
 import entity.Cityinfo;
+import entity.Hobby;
 import facade.Facade;
 import entity.Person;
+import java.util.List;
 import java.util.Random;
-import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import mappers.CityinfoMapper;
 
 public class RandomTestDataGenerator {
 
@@ -20,6 +20,9 @@ public class RandomTestDataGenerator {
         String side = "";
         int randomizer;
         int sideRandomizer;
+        Random rnd = new Random();
+        List<Hobby> hobbies = facade.getAllHobbies();
+        
         String[] firstNames = {"Benjamin", "Merle", "Nikolaj", "Marie", "Ellen", "Arthur", "Karla", "Matias", "Marius", "Marcus", "Sofia", "Villads", "Marcus", "Simon", "William", "Maja", "Jonathan", "Mads", "Ida", "Jonathan", "Magnus", 
             "Jakob", "Lucas", "Nicoline", "Julie", "August", "Nicoline", "Laura", "Thea", "Mille"};
         String[] lastNames = {"Jørgensen", "Pedersen", "Sørensen", "Nielsen", "Christensen", "Poulsen", "Vad", "Jensen", "Hansen", "Larsen", "Mortensen", "Andersen", "Kristensen", "Thomsen", "Møller", "Christiansen", "Madsen", "Petersen"};
@@ -29,7 +32,6 @@ public class RandomTestDataGenerator {
             "Svalevej" , "Spurvevej" , "Solsortevej" , "Parkvej" , "Grønningen" , "Hasselvej" , "Kløvervej" , "Præstevænget" , "Møllebakken" , "Gartnervænget" , "Møllevænget" , "Kirkebakken" , "Falkevej" , "Grønnegade" , "Vesterled" , "Kildevej" , "Strandvejen" , 
             "Glentevej" , "Søvej" , "Torvet" , "Tranevej" , "Stadionvej" , "Solbakken" , "Odinsvej" , "Enebærvej" , "Hovedgaden" , "Smedevej" , "Birkevænget" , "Solvænget" , "Åvej" , "Rugvænget" , "Vestervang" , "Rønnevej" , "Skovvænget" , "Mejerivej" , "Krogen" , 
             "Granvej" , "Ørnevej" , "Thorsvej" , "Teglværksvej" , "Lyngvej" , "Kirkegade" , "Udsigten" , "Lupinvej" , "Præstegårdsvej" , "Mejsevej"};
-        Random rnd = new Random();
         
         
         for (int i = 0; i < samples; i++) {
@@ -62,7 +64,8 @@ public class RandomTestDataGenerator {
                 } else {
                     side = "";
                 }
-            p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(10000) +houseLetter + " " + side, city));                    
+            p.setAddress(new Address(address[rnd.nextInt(address.length)] + " " + rnd.nextInt(10000) + houseLetter + " " + side, city));                    
+          //  p.setHobbies(hobbies.get(rnd.nextInt(hobbies.size())));
             facade.addPerson(p);
             houseLetter = "";
             side = "";

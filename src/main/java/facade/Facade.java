@@ -49,7 +49,7 @@ public class Facade implements IFacade {
     public List<PersonMapper> getAllPersons() { //works
         EntityManager manager = factory.createEntityManager();
 
-        List<PersonMapper> pms = null;
+        List<PersonMapper> pms = new ArrayList();
 
         try {
             manager.getTransaction().begin();
@@ -71,6 +71,20 @@ public class Facade implements IFacade {
         return p;
     }
 
+    public List<Hobby> getAllHobbies() { //works
+        EntityManager manager = factory.createEntityManager();
+        List<Hobby> result = new ArrayList();
+        
+        try {
+            manager.getTransaction().begin();
+            result = manager.createQuery("Select new entity.Hobby(h.name) from Hobby h").getResultList();
+            manager.getTransaction().commit();
+        return result;            
+        } finally {
+            manager.close();
+        }        
+    }
+    
     @Override
     public List<Person> getPersonsByHobby(Hobby hobby) {
         List<Person> byHobby = new ArrayList<>();
@@ -146,9 +160,7 @@ public class Facade implements IFacade {
             manager.close();
         }
     }
-    }
-   
-    
+    }   
     //weird
     public CityinfoMapper getZipcode(int zipcode) 
     {

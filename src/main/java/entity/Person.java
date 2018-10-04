@@ -48,14 +48,14 @@ public class Person implements Serializable {
     //Address
     @Size(max = 45)
     @JoinColumn(name = "Address")
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @Column(name = "Phone")
-     private int phone;       
-   // Hobbys
-    @ManyToMany (cascade = CascadeType.ALL)
-    List<Hobby> hobbys = new ArrayList();   
+    private int phone;
+    // Hobbys
+    @ManyToMany(cascade = CascadeType.ALL)
+    List<Hobby> hobbies = new ArrayList();
 
     public Person() {
     }
@@ -69,8 +69,6 @@ public class Person implements Serializable {
         this.lastName = lastName;
         this.phone = phone;
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -104,13 +102,13 @@ public class Person implements Serializable {
         this.phone = phone;
     }
 
-    public List<Hobby> getHobbys() {
-        return hobbys;
+    public List<Hobby> getHobbies() {
+        return hobbies;
     }
 
-    public void setHobbys(List<Hobby> hobbys) {
-        this.hobbys = hobbys;
-    }  
+    public void setHobbies(Hobby hobby) {
+        hobbies.add(hobby);
+    }
 
     public Address getAddress() {
         return address;
@@ -119,9 +117,7 @@ public class Person implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -146,5 +142,5 @@ public class Person implements Serializable {
     public String toString() {
         return "entity.Person[ id=" + id + " ]";
     }
-    
+
 }
