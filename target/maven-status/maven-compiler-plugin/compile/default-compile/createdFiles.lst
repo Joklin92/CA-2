@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 entity\Cityinfo_.class
 mappers\AddressMapper.class
 rest\AddressResource.class
@@ -7,16 +9,33 @@ rest\CityInfoResource.class
 tester\tester.class
 rest\ApplicationConfig.class
 generator\RandomTestDataGenerator.class
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> rest
+>>>>>>> 450bc43f4102476909af1f0caa5c330ad7859478
+>>>>>>> 9f0e2f77111a9ae4f1d68f6daf1fc8418a9b16c7
 facade\IFacade.class
 entity\Address.class
 entity\Person.class
 rest\JSONConverter.class
-entity\Person_.class
 entity\Hobby.class
-entity\Hobby_.class
 facade\Facade.class
 mappers\PersonMapper.class
 rest\PersonResource.class
 mappers\CityinfoMapper.class
+<<<<<<< HEAD
 entity\Address_.class
+=======
+rest\AddressResource.class
+<<<<<<< HEAD
+=======
+entity\Address_.class
+>>>>>>> 450bc43f4102476909af1f0caa5c330ad7859478
+entity\Cityinfo.class
+rest\CityInfoResource.class
+tester\tester.class
+rest\ApplicationConfig.class
+generator\RandomTestDataGenerator.class
+>>>>>>> 9f0e2f77111a9ae4f1d68f6daf1fc8418a9b16c7
 rest\HobbyResource.class

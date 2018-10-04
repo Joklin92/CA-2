@@ -1,7 +1,5 @@
 package tester;
 
-import entity.Address;
-import entity.Cityinfo;
 import facade.Facade;
 import generator.RandomTestDataGenerator;
 import javax.persistence.Persistence;
@@ -9,7 +7,7 @@ import javax.persistence.Persistence;
 public class tester {
 
     public static void main(String[] args) {
-
+      
         Facade facade = new Facade();
         facade.addEntityManagerFactory(Persistence.createEntityManagerFactory("persistence"));
         RandomTestDataGenerator rtdg = new RandomTestDataGenerator();
@@ -27,5 +25,7 @@ public class tester {
         //System.out.println(facade.getAddressByZip(1903));
 
     }
-
+    
 }
+
+
