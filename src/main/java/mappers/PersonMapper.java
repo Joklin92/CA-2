@@ -5,10 +5,6 @@ import entity.Hobby;
 import entity.Person;
 import java.util.List;
 
-/**
- *
- * @author malik
- */
 public class PersonMapper {
 
     private Integer id;
@@ -37,13 +33,10 @@ public class PersonMapper {
         }
     }
 
-//    public PersonMapper(String firstName, String lastName) {
-//        this.fullName = firstName + " " + lastName;
-//        
-//    }
-
-
-    
+    public PersonMapper(String firstName, String lastName) {
+        this.fullName = firstName + " " + lastName;
+        
+    }   
     
     public PersonMapper(String firstName, String lastName, int phonenumber) {
         this.fullName = firstName + " " + lastName;
@@ -82,13 +75,7 @@ public class PersonMapper {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
- 
-
-   
-
-    
+    }    
 
     public String[] getHobbies() {
         return hobbies;

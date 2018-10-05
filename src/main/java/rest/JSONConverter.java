@@ -8,12 +8,13 @@ import entity.Cityinfo;
 import entity.Hobby;
 import java.util.ArrayList;
 import java.util.List;
+import mappers.CityinfoMapper;
 import mappers.PersonMapper;
 
 public class JSONConverter {
 
-    static Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
+    //static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    static Gson gson = new Gson();
     //------------------------- Address --------------------//   
     public static Address getAddressFromJson(String js) {
         return gson.fromJson(js, Address.class);
@@ -35,7 +36,7 @@ public class JSONConverter {
 
     }
 
-    public static String getJSONFromCityinfo(Cityinfo c) {
+    public static String getJSONFromCityinfo(CityinfoMapper c) {
         return gson.toJson(c);
     }
 

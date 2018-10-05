@@ -86,7 +86,7 @@ public class Facade implements IFacade {
 
     public PersonMapper getPersonbyid(int id) {
         PersonMapper pm = null;
-        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName) FROM Person AS p WHERE p.id = :id");
+        Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName, p.phone) FROM Person AS p WHERE p.id = :id");
         query.setParameter("id", id);
         pm = (PersonMapper) query.getSingleResult();
         return pm;
@@ -100,7 +100,6 @@ public class Facade implements IFacade {
     @Override
     public PersonMapper getPersonByPhone(int phoneNumber) { //works
         PersonMapper p = null;
-
         Query query = getEntityManager().createQuery("SELECT NEW mappers.PersonMapper(p.firstName, p.lastName, p.phone) FROM Person AS p WHERE p.phone = :phone");
         query.setParameter("phone", phoneNumber);
         p = (PersonMapper) query.getSingleResult();
@@ -231,22 +230,6 @@ public class Facade implements IFacade {
         }
     }
 
-    //weird
-    public CityinfoMapper getZipcode(int zipcode) {
-        EntityManager manager = getEntityManager();
-
-        CityinfoMapper c = null;
-
-        try {
-            manager.getTransaction().begin();
-            c = manager.find(CityinfoMapper.class, zipcode);
-            manager.getTransaction().commit();
-            return c;
-        } finally {
-            manager.close();
-        }
-    }
-
     public Person editPerson(Person person) {
         EntityManager em = factory.createEntityManager();
 
@@ -264,5 +247,10 @@ public class Facade implements IFacade {
         } finally {
             em.close();
         }
+    }
+    
+    public Cityinfo getCityByZip(int zipCode) {        
+       EntityManager em = factory.createEntityManager();
+       return em.find(Cityinfo.class, zipCode);
     }
 }

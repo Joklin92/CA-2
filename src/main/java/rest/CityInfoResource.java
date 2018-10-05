@@ -14,9 +14,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import mappers.CityinfoMapper;
 
 @Path("cityinfo")
 public class CityInfoResource {
@@ -26,7 +28,7 @@ public class CityInfoResource {
     private UriInfo context;
     private Facade facade;
 
-    public CityInfoResource() {
+    public CityInfoResource()  {
        facade = new Facade();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence");
         facade.addEntityManagerFactory(emf);
@@ -42,5 +44,15 @@ public class CityInfoResource {
         }
 
         return JSONConverter.getJSONFromCityinfos(cityinfo);
+    }
+    
+    @GET // work
+    @Path("/{zip}") //with a sematic url parameter
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCityByZip(@PathParam("zip") int zipCode) {
+        Cityinfo cityinfo = facade.getCityByZip(zipCode);
+        CityinfoMapper cm = new CityinfoMapper(cityinfo);
+        
+        return JSONConverter.getJSONFromCityinfo(cm);
     }
 }

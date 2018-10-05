@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/CA-2/";
+let url = "http://localhost:8080/CA-2/"; // change after deployment
 
 function makeOptionsGet(requestType, body) {
     return {
@@ -22,12 +22,13 @@ function makeOptionsPost(requestType, body) {
 };
 
 function getAllZipcodes(event) {
-    let zips = event.target.id;
+    let zips = "api/cityinfo/allZips";
     
     document.getElementById("choosing").innerHTML = zips;
 
     console.log("See zips list here here: " + zips)
     url += zips;
+    console.log(url);
     optionsGet;
     fetching();
 
@@ -36,7 +37,7 @@ function getAllZipcodes(event) {
 //document.getElementById("givenHobby").addEventListener("click", getPeopleWithGivenHobby);
 //document.getElementById("livingInCity").addEventListener("click", getPeopleLivingInCity);
 //document.getElementById("countHobbyPeople").addEventListener("click", getCountOfPeopleWithGivenHobby);
-document.getElementById("allZipcodes").addEventListener("click", getAllZipcodes);
+document.getElementById("allZipCodes").addEventListener("click", getAllZipcodes);
 //document.getElementById("createPerson").addEventListener("click", createPerson);
 
 

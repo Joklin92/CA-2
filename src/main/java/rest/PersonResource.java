@@ -108,7 +108,7 @@ public class PersonResource {
     
     
      @DELETE
-    @Path("{id}")
+    @Path("delete/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response deletePerson(@PathParam("id") int id) {
