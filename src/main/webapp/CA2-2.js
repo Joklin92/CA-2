@@ -1,4 +1,4 @@
-let url = "http://localhost:8084/CA-2/"; // change after deployment
+let url = "https://holmentertainment.com/CA-2-1.0/"; // change after deployment
 
 document.getElementById("allZipCodes").addEventListener("click", getAllZipcodes);
 document.getElementById("allPerson").addEventListener("click", getAllPersons);
